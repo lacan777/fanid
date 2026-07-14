@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050505" />
+    <meta
+      name="description"
+      content="Umbral: una historia visual e interactiva de la filosofía, la conciencia, la materia y el cosmos."
+    />
+    <title>Umbral — La pregunta que aprendió a caminar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Manrope:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+      <a class="brand magnetic" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>UMBRAL</span>
+      </a>
+      <p class="coordinates">TIERRA · VÍA LÁCTEA<br />AHORA</p>
+      <button class="menu-toggle magnetic" type="button" aria-expanded="false" aria-controls="menu">
+        <span>ÍNDICE</span>
+        <i></i>
+      </button>
+    </header>
+
+    <nav class="menu" id="menu" aria-hidden="true" inert>
+      <div class="menu-meta mono">LA PREGUNTA QUE APRENDIÓ A CAMINAR · 2026</div>
+      <div class="menu-links">
+        <a href="#historia"><sup>01</sup> Historia</a>
+        <a href="#conciencia"><sup>02</sup> Quién soy</a>
+        <a href="#materia"><sup>03</sup> Qué es real</a>
+        <a href="#cosmos"><sup>04</sup> Dónde estoy</a>
+        <a href="#formas"><sup>05</sup> Máquina</a>
+        <a href="#presencia"><sup>06</sup> Cómo vivir</a>
+      </div>
+      <p class="menu-note">Una pregunta viaja durante miles de años. Al final, cambia de voz y se convierte en la tuya.</p>
+    </nav>
+
+    <main>
+      <section class="hero" id="inicio">
+        <canvas id="hero-cosmos" aria-hidden="true"></canvas>
+        <div class="hero-orbit" aria-hidden="true"></div>
+
+        <div class="hero-kicker mono reveal">ÉRASE UNA VEZ UNA PREGUNTA</div>
+        <div class="hero-copy">
+          <h1 aria-label="Todo lo que miras también te está mirando">
+            <span class="line reveal">TODO LO QUE</span>
+            <span class="line reveal italic">MIRAS</span>
+            <span class="line reveal align-right">TAMBIÉN TE ESTÁ</span>
+            <span class="line reveal">MIRANDO<span class="period">.</span></span>
+          </h1>
+          <p class="hero-intro reveal">
+            Comenzó en los ojos de una niña bajo las estrellas.
+            <em>Cruzó plazas, libros y siglos. Hoy ha llegado hasta tus manos.</em>
+          </p>
+        </div>
+
+        <button class="sound-toggle magnetic" type="button" aria-label="Activar ambiente sonoro" aria-pressed="false" data-sound="off">
+          <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="sound-label">SONIDO OFF</span>
+        </button>
+
+        <a class="scroll-cue" href="#historia">
+          <span>SEGUIR LA PREGUNTA</span>
+          <i aria-hidden="true"></i>
+        </a>
+      </section>
+
+      <section class="philosophy-story" id="historia" data-theme="dark">
+        <header class="story-intro">
+          <p class="story-overline mono reveal">UNA HISTORIA POSIBLE DE LA FILOSOFÍA</p>
+          <h2 class="reveal">La pregunta<br />que aprendió<br /><em>a caminar.</em></h2>
+          <div class="story-intro-copy reveal">
+            <p>Esta no es la historia de personas que tenían todas las respuestas.</p>
+            <p>Es la aventura de una pregunta que pasó de mano en mano durante miles de años sin dejar de crecer.</p>
+          </div>
+          <span class="story-scroll mono">DESLIZA PARA SEGUIR LA PREGUNTA ↓</span>
+        </header>
+
+        <div class="story-layout">
+          <div class="story-visual-shell" aria-hidden="true">
+            <canvas id="history-visual"></canvas>
+            <div class="story-visual-meta mono">
+              <span class="visual-scene">LA NOCHE</span>
+              <span class="visual-epoch">ANTES DE LA ESCRITURA</span>
+            </div>
+            <div class="story-progress"><i></i></div>
+            <span class="particle-caption mono">UNA MISMA PREGUNTA · OCHO MANERAS DE MIRAR</span>
+          </div>
+
+          <div class="story-steps">
+            <article class="story-step is-active" data-scene="0" data-label="LA NOCHE" data-epoch="ANTES DE LA ESCRITURA">
+              <span class="story-number mono">01 / 08</span>
+              <p class="story-place mono">LA NOCHE DE LAS PRIMERAS PREGUNTAS</p>
+              <h3>Una niña miró el cielo.</h3>
+              <p>Preguntó quién había encendido las estrellas. Nadie podía saberlo, así que las personas inventaron relatos sobre dioses, animales y fuerzas invisibles. Aquellos mitos no eran tonterías: eran los primeros mapas para caminar por un mundo enorme.</p>
+              <blockquote>Cada vez que alguien preguntó qué podía significar una historia, la filosofía dio otro primer paso.</blockquote>
+            </article>
+
+            <article class="story-step" data-scene="1" data-label="TRES CAMINOS" data-epoch="800–300 A. C.">
+              <span class="story-number mono">02 / 08</span>
+              <p class="story-place mono">INDIA · CHINA · GRECIA</p>
+              <h3>La misma pregunta tomó formas distintas.</h3>
+              <p>En India preguntaron qué es el yo y cómo liberarnos del sufrimiento. En China, Confucio pensó cómo convivir con bondad y los taoístas aprendieron del agua. En Grecia buscaron la explicación de la naturaleza dentro de la propia naturaleza.</p>
+              <blockquote>Hay muchas puertas para entrar en una misma pregunta.</blockquote>
+            </article>
+
+            <article class="story-step" data-scene="2" data-label="LA PREGUNTA" data-epoch="ATENAS · 470–322 A. C.">
+              <span class="story-number mono">03 / 08</span>
+              <p class="story-place mono">SÓCRATES · PLATÓN · ARISTÓTELES</p>
+              <h3>El hombre que sabía que no sabía.</h3>
+              <p>Una de esas puertas se abrió en las plazas de Atenas. Sócrates preguntaba qué era la justicia. Platón imaginó que quizá solo vemos sombras. Aristóteles observó plantas, animales y estrellas. Pensar, descubrieron, no era ganar: era aprender a mirar mejor.</p>
+              <blockquote>Reconocer que no sabes es el comienzo de la sabiduría.</blockquote>
+            </article>
+
+            <article class="story-step" data-scene="3" data-label="LA CAVERNA" data-epoch="UNA HISTORIA DE PLATÓN">
+              <span class="story-number mono">04 / 08</span>
+              <p class="story-place mono">LUZ · SOMBRA · REALIDAD</p>
+              <h3>¿Y si confundiéramos las sombras con el mundo?</h3>
+              <p>Para explicar algo difícil, Platón hizo algo muy antiguo: contó una historia. Unas personas vivían dentro de una cueva mirando sombras desde que nacieron. Para ellas, las sombras eran toda la realidad. Salir hacia la luz dolía, pero revelaba un mundo mucho más grande.</p>
+              <blockquote>Aprender es permitir que los ojos se acostumbren a una luz nueva.</blockquote>
+            </article>
+
+            <article class="story-step" data-scene="4" data-label="EL VIAJE" data-epoch="300–1400">
+              <span class="story-number mono">05 / 08</span>
+              <p class="story-place mono">ALEJANDRÍA · BAGDAD · CÓRDOBA</p>
+              <h3>Las ideas aprendieron otros idiomas.</h3>
+              <p>La pregunta dejó Atenas y aprendió a viajar en barcos, caravanas y manuscritos. En Bagdad, Ibn Sina estudió la mente; en Córdoba, Ibn Rushd defendió la razón. Maimónides, Hildegarda y Tomás de Aquino conversaron con la fe desde distintas tradiciones.</p>
+              <blockquote>Pensar también es traducir, cuidar y compartir.</blockquote>
+            </article>
+
+            <article class="story-step" data-scene="5" data-label="LA DUDA" data-epoch="SIGLOS XVII–XVIII">
+              <span class="story-number mono">06 / 08</span>
+              <p class="story-place mono">DESCARTES · HUME · KANT</p>
+              <h3>Una habitación donde todo podía ser falso.</h3>
+              <p>Siglos después, la imprenta y el telescopio cambiaron el tamaño del mundo. Descartes entró en una habitación y dudó de todo. Hume sospechó que muchas certezas eran costumbres. Kant propuso que la mente no es una ventana transparente: también organiza aquello que ve.</p>
+              <blockquote>La mente no solo contempla el mundo: también le da forma.</blockquote>
+            </article>
+
+            <article class="story-step" data-scene="6" data-label="SIN MAPA" data-epoch="SIGLOS XIX–XX">
+              <span class="story-number mono">07 / 08</span>
+              <p class="story-place mono">NIETZSCHE · BEAUVOIR · ARENDT · FANON</p>
+              <h3>Los viejos mapas comenzaron a romperse.</h3>
+              <p>La duda salió de la habitación y miró la calle. Preguntó quién pagaba el progreso, cómo vivir sin una historia ya escrita y por qué la libertad de una persona depende también de la libertad de las demás. Elegir dejó de parecer un juego solitario.</p>
+              <blockquote>Me convierto en quien soy, pero nunca lo hago a solas.</blockquote>
+            </article>
+
+            <article class="story-step" data-scene="7" data-label="AHORA" data-epoch="TÚ ESTÁS AQUÍ">
+              <span class="story-number mono">08 / 08</span>
+              <p class="story-place mono">CEREBRO · COSMOS · INTELIGENCIA ARTIFICIAL</p>
+              <h3>La pregunta finalmente llega hasta ti.</h3>
+              <p>La neurociencia observa cómo el cerebro fabrica recuerdos. La física encuentra un tiempo que se estira. La inteligencia artificial pregunta qué significa comprender o crear. Desde aquí se abren cinco puertas: mente, materia, cosmos, código y el instante que estás viviendo.</p>
+              <blockquote>La historia no termina aquí: cambia de manos.</blockquote>
+              <a class="story-continue" href="#epilogo">ABRIR LAS CINCO PREGUNTAS QUE QUEDARON ↓</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="question-bridge" id="epilogo" data-theme="light">
+        <div class="bridge-heading">
+          <p class="eyebrow reveal">EL RELATO LLEGÓ HASTA EL PRESENTE</p>
+          <h2 class="reveal">La historia<br />termina aquí.<br /><em>Las preguntas no.</em></h2>
+        </div>
+        <div class="bridge-copy reveal">
+          <p>La filosofía no es un museo de respuestas antiguas. Es una caja de herramientas que cada generación vuelve a abrir.</p>
+          <p>Ahora la pregunta sale de los libros y cambia de voz. Durante los próximos minutos, esa voz será la tuya.</p>
+        </div>
+        <nav class="question-index" aria-label="Las cinco preguntas del epílogo">
+          <a href="#conciencia"><span class="mono">01</span><strong>¿Quién soy?</strong><i>MENTE</i></a>
+          <a href="#materia"><span class="mono">02</span><strong>¿Qué es real?</strong><i>MATERIA</i></a>
+          <a href="#cosmos"><span class="mono">03</span><strong>¿Dónde estoy?</strong><i>COSMOS</i></a>
+          <a href="#formas"><span class="mono">04</span><strong>¿Puede una máquina imaginar?</strong><i>CÓDIGO</i></a>
+          <a href="#presencia"><span class="mono">05</span><strong>¿Cómo quiero vivir?</strong><i>PRESENCIA</i></a>
+        </nav>
+      </section>
+
+      <section class="chapter consciousness" id="conciencia" data-theme="light">
+        <div class="section-index mono">PREGUNTA 01 — ¿QUIÉN SOY?</div>
+        <div class="chapter-grid">
+          <div class="chapter-title">
+            <p class="eyebrow reveal">LA PREGUNTA ENTRA EN TI</p>
+            <h2 class="split-title">La materia<br />que aprendió<br /><em>a imaginar.</em></h2>
+          </div>
+          <div class="chapter-body reveal">
+            <p class="lead">
+              La niña del comienzo cierra los ojos. El cielo desaparece, pero la oscuridad sigue llena de formas. Ver no es copiar el mundo: tu cerebro combina señales, recuerdos y predicciones para interpretarlo.
+            </p>
+            <p>
+              Cerca de ochenta y seis mil millones de neuronas conversan mediante electricidad. Ninguna puede decir «yo» por sí sola. Juntas producen colores, recuerdos, miedo, ternura y la extraña sensación de estar aquí.
+            </p>
+          </div>
+        </div>
+
+        <div class="neural-field">
+          <canvas id="neural" aria-hidden="true"></canvas>
+          <div class="neural-label mono">SEÑAL / MEMORIA / YO</div>
+          <p class="neural-interaction mono">ACERCA EL DEDO O EL CURSOR · TODA MIRADA ALTERA LA RED</p>
+        </div>
+
+        <div class="thought reveal">
+          <span class="quote-mark">“</span>
+          <blockquote>
+            Quizá una mente sea el lugar<br />donde el universo aprende a <em>sentirse.</em>
+          </blockquote>
+          <p class="mono">UNA IDEA PARA LLEVAR CONTIGO</p>
+        </div>
+        <a class="next-question mono" href="#materia">SI UNA EXPERIENCIA PUEDE NACER DE LA MATERIA, LA PREGUNTA CAMBIA: ¿QUÉ ES LA MATERIA? ↓</a>
+      </section>
+
+      <section class="chapter matter" id="materia" data-theme="dark">
+        <div class="section-index mono">PREGUNTA 02 — ¿QUÉ ES REAL?</div>
+        <div class="matter-stage">
+          <button class="gravity-well" type="button" aria-label="Alterar la curvatura del espacio" aria-pressed="false">
+            <div class="rings"></div>
+            <div class="core"></div>
+            <span class="gravity-instruction mono">TOCA PARA CURVAR</span>
+          </button>
+          <div class="matter-copy">
+            <p class="eyebrow reveal">LA PREGUNTA SALE DE TI</p>
+            <h2 class="split-title">El espacio<br />no está vacío.</h2>
+            <p class="lead reveal">
+              Tu cuerpo parece sólido, pero cada átomo es casi todo espacio. Y ese espacio tampoco es «nada»: puede estirarse, ondularse y curvarse alrededor de la materia.
+            </p>
+          </div>
+        </div>
+
+        <div class="equation-row reveal">
+          <div class="equation">G<sub>μν</sub> + Λg<sub>μν</sub> = <span>8πG / c⁴</span> T<sub>μν</sub></div>
+          <div class="equation-note">
+            <span class="mono">ECUACIÓN DE CAMPO · EINSTEIN</span>
+            <p>Una forma compacta de decir algo hermoso: la materia le cuenta al espacio cómo curvarse, y el espacio le cuenta a la materia cómo moverse.</p>
+          </div>
+        </div>
+        <a class="next-question mono" href="#cosmos">Y SI LA MATERIA CURVA EL ESPACIO-TIEMPO, ¿EN QUÉ CLASE DE UNIVERSO ESTAMOS? ↓</a>
+      </section>
+
+      <section class="chapter cosmos-section" id="cosmos" data-theme="dark">
+        <div class="section-index mono">PREGUNTA 03 — ¿DÓNDE ESTOY?</div>
+        <div class="cosmos-sticky">
+          <div class="cosmos-sphere" aria-hidden="true">
+            <canvas id="galaxy"></canvas>
+          </div>
+          <div class="cosmos-copy">
+            <p class="eyebrow reveal">LA PREGUNTA MIRA HACIA AFUERA</p>
+            <h2 class="split-title">Eres una forma<br />del cosmos<br /><em>mirándose.</em></h2>
+            <p class="lead reveal">
+              La materia curva el espacio, el espacio reúne estrellas y las estrellas fabrican elementos. El hierro de tu sangre nació dentro de una de ellas. No eres alguien perdido en el universo: eres una parte del universo capaz de preguntar dónde está.
+            </p>
+          </div>
+          <p class="cosmos-instruction mono">DESLIZA EL DEDO O EL CURSOR SOBRE EL COSMOS PARA CAMBIAR EL PUNTO DE VISTA</p>
+        </div>
+        <a class="next-question mono" href="#formas">MIRAR SIEMPRE ES INTERPRETAR. AHORA LA PREGUNTA ENTRA EN UNA MÁQUINA ↓</a>
+      </section>
+
+      <section class="chapter ascii-lab" id="formas" data-theme="light">
+        <div class="section-index mono">PREGUNTA 04 — ¿PUEDE UNA MÁQUINA IMAGINAR?</div>
+        <div class="ascii-grid">
+          <div class="ascii-copy">
+            <p class="eyebrow reveal">LA PREGUNTA CAMBIA DE CUERPO</p>
+            <h2 class="split-title">La máquina calcula.<br /><em>Tú ves.</em></h2>
+            <p class="lead reveal">
+              Este código no ve una esfera: solo ordena puntos y caracteres. Eres tú quien les entrega profundidad. Si una máquina aprende todos nuestros patrones, ¿habrá comprendido algo o solo producirá sombras más convincentes?
+            </p>
+            <p class="ascii-instruction mono reveal">MUEVE LA FORMA · PULSA «MUTAR» · OBSERVA QUÉ PARTE PERTENECE A LA MÁQUINA Y CUÁL A TI</p>
+          </div>
+
+          <div class="ascii-terminal reveal">
+            <div class="terminal-bar mono">
+              <span>OBJETO / <b class="shape-name">TOROIDE</b></span>
+              <span>RENDER ASCII · TIEMPO REAL</span>
+            </div>
+            <pre id="ascii-art" role="img" aria-label="Escultura tridimensional creada con caracteres ASCII">CARGANDO FORMA…</pre>
+            <div class="terminal-controls">
+              <button class="shape-toggle magnetic" type="button">
+                <span>CAMBIAR HIPÓTESIS</span>
+                <i aria-hidden="true">↗</i>
+              </button>
+              <span class="mono shape-count">01 / 03</span>
+            </div>
+          </div>
+        </div>
+        <a class="next-question mono" href="#presencia">SI TU MENTE COMPLETA LA FORMA, QUEDA ALGO QUE NINGUNA IMAGEN PUEDE RESPONDER: ¿CÓMO QUIERES VIVIR? ↓</a>
+      </section>
+
+      <section class="chapter presence" id="presencia" data-theme="light">
+        <div class="section-index mono">PREGUNTA 05 — ¿CÓMO QUIERO VIVIR?</div>
+        <div class="presence-inner">
+          <p class="eyebrow reveal">LA ÚLTIMA RESPUESTA NO CABE EN UNA PÁGINA</p>
+          <h2 class="split-title">Detente.<br /><em>Respira.</em></h2>
+          <p class="presence-intro reveal">La niña que miró el cielo cambió de siglo, de nombre y de ojos. Ahora eres tú. Toca el círculo: la filosofía también puede comenzar prestando atención.</p>
+
+          <button class="breath-orb magnetic" type="button" aria-label="Comenzar ejercicio de respiración" aria-pressed="false">
+            <span class="breath-ring"></span>
+            <span class="breath-core">
+              <span class="breath-state">COMENZAR</span>
+              <span class="breath-count"></span>
+            </span>
+          </button>
+          <p class="breath-outro reveal">No encontraste una respuesta final. Encontraste el lugar desde donde seguir preguntando.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>LA PREGUNTA LLEGÓ HASTA TI. AHORA PUEDE SEGUIR DE MANO EN MANO.</p>
+      <div class="footer-meta mono">
+        <span>UNA HISTORIA GUARDADA EN UNA TARJETA</span>
+        <span>© <span id="year"></span> UMBRAL</span>
+        <a href="#inicio">VOLVER A MIRAR EL CIELO ↑</a>
+      </div>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+.agents/
+.codex/
+.visual-*.png
+visual-check.cjs
+node_modules/
