@@ -623,13 +623,14 @@ breath.addEventListener("click",()=>{
 
 // Small parallax response, batched to one layout update per animation frame.
 const heroCopy = $(".hero-copy");
+const heroTitle = $(".hero h1");
 let scrollFramePending = false;
 addEventListener("scroll", () => {
   if (scrollFramePending) return;
   scrollFramePending = true;
   requestAnimationFrame(() => {
     const y = scrollY;
-    heroCopy.style.transform = `translateY(${Math.min(y * .12, 90)}px)`;
+    heroTitle.style.transform = `translateY(-${Math.min(y * .12, 90)}px)`;
     heroCopy.style.opacity = String(Math.max(0, 1 - y / innerHeight * .95));
     scrollFramePending = false;
   });
