@@ -411,22 +411,21 @@ let asciiTargetX = asciiAngleX, asciiTargetY = asciiAngleY, pointerInfluenceUnti
 
 function buildAsciiShape(index) {
   const points = [];
-  const detail = compactVisuals ? 1.55 : 1;
+  const detail = compactVisuals ? 1.35 : .8;
 
   if (index === 0) {
     for (let a = 0; a < Math.PI * 2; a += .13 * detail) {
       for (let b = 0; b < Math.PI * 2; b += .09 * detail) {
-        const ring = 1.25 + .52 * Math.cos(b);
-        const light = Math.max(0, (Math.cos(b) * Math.cos(a) * .35 - Math.sin(b) * .7 + Math.cos(b) * Math.sin(a) * .45 + 1) / 2);
-        points.push({ x: ring * Math.cos(a), y: .52 * Math.sin(b), z: ring * Math.sin(a), light });
+        const cosA = Math.cos(a), sinA = Math.sin(a), cosB = Math.cos(b), sinB = Math.sin(b);
+        const ring = 1.25 + .52 * cosB;
+        points.push({ x: ring * cosA, y: .52 * sinB, z: ring * sinA, nx: cosB * cosA, ny: sinB, nz: cosB * sinA });
       }
     }
   } else if (index === 1) {
     for (let latitude = -Math.PI / 2; latitude <= Math.PI / 2; latitude += .09 * detail) {
       for (let longitude = 0; longitude < Math.PI * 2; longitude += .1 * detail) {
         const c = Math.cos(latitude), x = 1.45 * c * Math.cos(longitude), y = 1.45 * Math.sin(latitude), z = 1.45 * c * Math.sin(longitude);
-        const light = Math.max(0, (x * .3 - y * .55 + z * .45) / 1.45 * .5 + .5);
-        points.push({ x, y, z, light });
+        points.push({ x, y, z, nx: x / 1.45, ny: y / 1.45, nz: z / 1.45 });
       }
     }
   } else {
@@ -434,13 +433,13 @@ function buildAsciiShape(index) {
       const y = t / (Math.PI * 3) * 1.75;
       for (const phase of [0, Math.PI]) {
         const angle = t + phase;
-        points.push({ x: Math.cos(angle) * .82, y, z: Math.sin(angle) * .82, light: .58 + Math.sin(angle) * .28 });
+        points.push({ x: Math.cos(angle) * .82, y, z: Math.sin(angle) * .82, nx: Math.cos(angle), ny: 0, nz: Math.sin(angle) });
       }
     }
     for (let t = -Math.PI * 3; t <= Math.PI * 3; t += .42 * detail) {
       const y = t / (Math.PI * 3) * 1.75, x = Math.cos(t) * .82, z = Math.sin(t) * .82;
       for (let bridge = -1; bridge <= 1; bridge += .12 * detail) {
-        points.push({ x: x * bridge, y, z: z * bridge, light: .42 + Math.abs(bridge) * .35 });
+        points.push({ x: x * bridge, y, z: z * bridge, nx: Math.cos(t), ny: 0, nz: Math.sin(t) });
       }
     }
   }
@@ -450,32 +449,59 @@ function buildAsciiShape(index) {
 function drawAscii(time = 0) {
   if (!asciiArt || (!reducedMotion && time - lastAsciiFrame < 42)) return;
   lastAsciiFrame = time;
-  const columns = compactVisuals ? 48 : 76;
-  const rows = compactVisuals ? 27 : 39;
+  const columns = compactVisuals ? 72 : 112;
+  const rows = compactVisuals ? 42 : 58;
   const characters = new Array(columns * rows).fill(" ");
   const depthBuffer = new Float32Array(columns * rows);
 
-  if (!reducedMotion && time > pointerInfluenceUntil) asciiTargetY += .008;
+  if (!reducedMotion && time > pointerInfluenceUntil) {
+    asciiTargetY += .006;
+    asciiTargetX = -.34 + Math.sin(time * .00042) * .27;
+  }
   asciiAngleX += (asciiTargetX - asciiAngleX) * .07;
   asciiAngleY += (asciiTargetY - asciiAngleY) * .07;
   const sinX = Math.sin(asciiAngleX), cosX = Math.cos(asciiAngleX), sinY = Math.sin(asciiAngleY), cosY = Math.cos(asciiAngleY);
+  const projectionScale = [compactVisuals ? .58 : .62, compactVisuals ? 1.22 : 1.28, compactVisuals ? 1 : 1.1][shapeIndex];
+  const screenCenterY = rows * .4;
+  const groundY = -1.75;
 
   for (const point of shapePoints) {
     const rotatedY = point.y * cosX - point.z * sinX;
     const rotatedZ = point.y * sinX + point.z * cosX;
     const rotatedX2 = point.x * cosY + rotatedZ * sinY;
     const rotatedZ2 = -point.x * sinY + rotatedZ * cosY;
+
+    // Cast every point onto a ground plane before drawing the lit surface.
+    const heightAboveGround = Math.max(0, rotatedY - groundY);
+    const shadowX3D = rotatedX2 + heightAboveGround * .34;
+    const shadowZ3D = rotatedZ2 - heightAboveGround * .2;
+    const shadowDepth = shadowZ3D + 4.8;
+    const shadowProjection = columns * projectionScale / shadowDepth;
+    const shadowX = Math.round(columns / 2 + shadowX3D * shadowProjection);
+    const shadowY = Math.round(screenCenterY - groundY * shadowProjection * .52);
+    if (shadowX >= 0 && shadowX < columns && shadowY >= 0 && shadowY < rows) {
+      const shadowIndex = shadowY * columns + shadowX;
+      if (depthBuffer[shadowIndex] === 0) characters[shadowIndex] = heightAboveGround > 1.6 ? "." : ",";
+    }
+
     const depth = rotatedZ2 + 4.3;
     const inverseDepth = 1 / depth;
-    const projectionScale = [compactVisuals ? .5 : .54, .7, .62][shapeIndex];
     const projection = columns * projectionScale * inverseDepth;
     const x = Math.round(columns / 2 + rotatedX2 * projection);
-    const y = Math.round(rows / 2 - rotatedY * projection * .52);
+    const y = Math.round(screenCenterY - rotatedY * projection * .52);
     if (x < 0 || x >= columns || y < 0 || y >= rows) continue;
     const bufferIndex = y * columns + x;
     if (inverseDepth <= depthBuffer[bufferIndex]) continue;
     depthBuffer[bufferIndex] = inverseDepth;
-    const luminance = Math.min(1, Math.max(0, point.light * .78 + inverseDepth * .8));
+
+    // Rotate the surface normal too, so highlights and shade move in real 3D.
+    const normalY = point.ny * cosX - point.nz * sinX;
+    const normalZ = point.ny * sinX + point.nz * cosX;
+    const normalX2 = point.nx * cosY + normalZ * sinY;
+    const normalZ2 = -point.nx * sinY + normalZ * cosY;
+    const diffuse = Math.max(0, normalX2 * -.45 + normalY * .72 + normalZ2 * .52);
+    const rim = Math.pow(1 - Math.min(1, Math.abs(normalZ2)), 2) * .22;
+    const luminance = Math.min(1, .08 + diffuse * .78 + rim + inverseDepth * .22);
     characters[bufferIndex] = asciiRamp[Math.floor(luminance * (asciiRamp.length - 1))];
   }
 
